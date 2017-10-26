@@ -77,10 +77,35 @@ console.log(arr1); // [ 1, 2, 3, 4, 5, 6 ]
 ## Class
  
  ES6에 도입된 Class는 사실 Function이다.
+ 
+ ``` javascript
+ // ES5로 구현한 클래스
+ var Person = (function() {
+     
+     // Constructor의 역할을 하는 함수 생성
+     function Person(name) {
+         this._name = name;
+     }
 
+     // Method
+     function sayHi() {
+         console.log('Hi' + this._name);
+     }
+
+     return Person; // 내부에 선언된 Person함수를 리턴한다.
+ }())// 즉시 실행 함수(외부함수)를 호출한다.
+ 
+ var user1 = new Person('Json'); // Instance 생성
+ user1.sayHi(); // 'Hi Json'
+ ```
+
+ 위 코드는 변수 Person에 함수 Person을 할당하고, 이를 즉시 실행 함수(외부함수)에서 리턴하는 구조이다.
+ 즉, ES6에서 말하는 Class란 사실 즉시 실행 함수로 Instance를 생성할 함수를 감싸고, 해당 함수를 리턴해주는 '함수'이다.
  
  ### constructor
  constructor는 인스턴트를 생성하고 초기화하기 위한 Method이다.
+ Class 내에 한 개만 존재할 수 있으며, 2개 이상의 constructor을 포함하면 SyntaxError가 발생하게된다.
+ 
  
  ### 멤버변수
  멤버변수는 Property를 의미하는데, Property의 값으로 data만 올 수 있다.(객체 리터럴에서 Property value는 undefined를 제외한 모든것을 쓸 수 있다.) 즉, Method를 제외한 모든것을 값으로 쓸 수 있다.
